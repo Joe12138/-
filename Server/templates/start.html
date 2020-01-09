@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>案情文本要素提取系统</title>
+    </head>
+    <body>
+        
+        <h1 align="center">案情文本要素提取系统</h1>
+        <div align="center">
+            <p>请选择案情类型:</p>
+            <select  name="type" form="text_form">
+                <option value="divorce" selected="selected">离婚案</option>
+                <option value="loan">借贷案</option>
+                <option value="labor">劳工案</option>
+            </select>
+        
+            <p>请选择预测模型:</p>
+            <select name="model" form="text_form">
+                <option value="bert" selected="selected">BERT微调</option>
+                <option value="bert_rcnn">BERT+RCNN</option>
+            </select>
+        
+        
+            <p>案情文本:</p>
+            
+            <textarea name="text" form="text_form" placeholder="请输入案情文本" style="width: 600px; height: 400px;"  ></textarea>
+            
+            <form id="text_form" action="/get_result" method="post">
+                {% csrf_token %}
+                <input type="submit" value="提交">
+            </form>
+        </div>
+    </body>
+</html>

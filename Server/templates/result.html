@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>案情文本要素提取系统</title>
+    </head>
+  
+    <body>
+        <h1 align="center">案情文本要素提取系统</h1>
+        <div align="center">
+            <p>案情类型为:{{type}}</p>
+            <p>预测模型为:{{model}}</p>
+            <p>案情文本:</p>
+            <textarea name="text" style="width: 600px; height: 400px;" >{{text}}</textarea>
+            
+            <p>案情要素如下:</p>
+            {% for key, value in result.items %}
+            <button style="background-color: chocolate;">{{key}}: {{value}}    </button>
+            {%endfor%}
+
+            <p>详细内容如下:</p>
+            
+            <table style="font-family: Verdana, Geneva, Tahoma, sans-serif;
+                        font-size: 11px;
+                        color: #333333;
+                        border-width: 1px;
+                        border-color: #666666;
+                        border-collapse: collapse;">
+                <tr>
+                    <th style="border-width: 1px;
+                                padding: 8px;
+                                border-style: solid;
+                                border-color: #666666;
+                                background-color: #dedede;">文本</th>
+                    <th style="border-width: 1px;
+                    padding: 8px;
+                    border-style: solid;
+                    border-color: #666666;
+                    background-color: #dedede;">预测标签</th>
+                </tr>
+                {% for key, value in detail.items %}
+                <tr>
+                    <td style="border-width: 1px;
+                        padding: 8px;
+                        border-style: solid;
+                        border-color: #666666;
+                        background-color: #ffffff;">{{key}}</td>
+                    <td style="border-width: 1px;
+                    padding: 8px;
+                    border-style: solid;
+                    border-color: #666666;
+                    background-color: #ffffff;">{{value}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+            
+        </div>
+        
+        <div align="center">
+            <form id="return" action="/return" method="post">
+                {% csrf_token %}
+                <input type="submit" value="返回">
+            </form>
+        </div>
+        
+
+    </body>
+</html>
